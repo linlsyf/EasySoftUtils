@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.linlsyf'
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
 
 
 
     defaultConfig {
         minSdkVersion 13
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
 
