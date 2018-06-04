@@ -82,7 +82,7 @@ public class ImageUtils {
 		
 	}
 
-	public void  load(Bitmap bitmap, ImageView imageView){
+	public void  loadBitMap(Bitmap bitmap, ImageView imageView){
 		ByteArrayOutputStream baos = new ByteArrayOutputStream(); bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 		byte[] bytes=baos.toByteArray();
 
