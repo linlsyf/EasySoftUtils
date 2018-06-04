@@ -91,7 +91,7 @@ public class ImageUtils {
 //				.dontAnimate()
 //				.placeholder(R.drawable.empty_photo)//图片加载出来前，显示的图片
 //				.into(imageView);
-	}
+//	}
 
 	public static class BitmapUtil {
 
