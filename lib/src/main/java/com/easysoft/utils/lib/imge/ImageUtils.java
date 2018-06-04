@@ -21,6 +21,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.easysoft.utils.lib.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class ImageUtils {
@@ -80,7 +81,19 @@ public class ImageUtils {
 		.into(myImageView);
 		
 	}
-	  public static class BitmapUtil {
+
+	public void  load(Bitmap bitmap, ImageView imageView){
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(); bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+		byte[] bytes=baos.toByteArray();
+
+		Glide.with(mContext)
+				.load(bytes)
+				.dontAnimate()
+				.placeholder(R.drawable.empty_photo)//图片加载出来前，显示的图片
+				.into(imageView);
+	}
+
+	public static class BitmapUtil {
 
 
 	        public static Bitmap zoomBitmap(Bitmap bitmap, float scale) {
