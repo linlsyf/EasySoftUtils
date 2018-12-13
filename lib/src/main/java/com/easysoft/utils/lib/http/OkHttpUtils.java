@@ -80,7 +80,9 @@ public class OkHttpUtils {
 	 * @param listener 下载监听
 	 */
 	public void download(final String url, final String saveDir, final OnDownloadListener listener) {
-		Request request = new Request.Builder().url(url).build();
+		Request request = new Request.Builder().addHeader("Accept-Encoding", "identity")
+				.url(url).build();
+
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Call call, IOException e) {
@@ -91,9 +93,8 @@ public class OkHttpUtils {
 			public void onResponse(Call call, Response response) throws IOException {
 				InputStream is = null;
 				byte[] buf = new byte[2048];
-				int len = 0;
-				FileOutputStream fos = null;
-				// 储存下载文件的目录
+				int len ;
+				FileOutputStream fos = null;// 储存下载文件的目录
 				String savePath = isExistDir(saveDir);
 				try {
 					is = response.body().byteStream();
@@ -105,12 +106,10 @@ public class OkHttpUtils {
 						fos.write(buf, 0, len);
 						sum += len;
 						int progress = (int) (sum * 1.0f / total * 100);
-						// 下载中
-						listener.onDownloading(progress);
+						listener.onDownloading(progress);// 下载中
 					}
 					fos.flush();
-					// 下载完成
-					listener.onDownloadSuccess();
+					listener.onDownloadSuccess();// 下载完成
 				} catch (Exception e) {
 					listener.onDownloadFailed();
 				} finally {

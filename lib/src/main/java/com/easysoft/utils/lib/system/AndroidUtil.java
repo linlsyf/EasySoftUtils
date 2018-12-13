@@ -6,8 +6,7 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -79,23 +78,23 @@ public class AndroidUtil {
 	// Toast.makeText(context, "请连续按两次退到后台",Toast.LENGTH_SHORT).show();
 	// }
 	// }
-	/**
-	 * 创建者：zw 时间：2015-5-26 下午4:47:28
-	 * 注释：用于FragmentActivity按返回把app退到后台或者返回到主界面，当主界面没有子Fragment的时候
-	 * ，直接以home的方式退到后台
-	 * 
-	 * @param context
-	 */
-	public static void onAppBack(FragmentActivity context) {
-		FragmentManager mFragmentManager = context.getSupportFragmentManager();
-		int BackStackCount = mFragmentManager.getBackStackEntryCount();
-		if (BackStackCount > 0) {
-			mFragmentManager.popBackStack();
-		} else {
-			// 与home键相似的作用退到后台
-			setAppOnBackground(context);
-		}
-	}
+//	/**
+//	 * 创建者：zw 时间：2015-5-26 下午4:47:28
+//	 * 注释：用于FragmentActivity按返回把app退到后台或者返回到主界面，当主界面没有子Fragment的时候
+//	 * ，直接以home的方式退到后台
+//	 *
+//	 * @param context
+//	 */
+//	public static void onAppBack(FragmentActivity context) {
+//		FragmentManager mFragmentManager = context.getSupportFragmentManager();
+//		int BackStackCount = mFragmentManager.getBackStackEntryCount();
+//		if (BackStackCount > 0) {
+//			mFragmentManager.popBackStack();
+//		} else {
+//			// 与home键相似的作用退到后台
+//			setAppOnBackground(context);
+//		}
+//	}
 
 	public static boolean isAppIsRunning(Context context, String MY_PKG_NAME) {
 		boolean isAppRunning = false;

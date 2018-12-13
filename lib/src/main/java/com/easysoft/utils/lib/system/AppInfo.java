@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 
 
