@@ -2,6 +2,8 @@ package com.easysoft.utils.lib.http;
 
 import android.os.Environment;
 
+import com.easysoft.utils.lib.system.ToastUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -86,8 +88,7 @@ public class OkHttpUtils {
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Call call, IOException e) {
-				// 下载失败
-				listener.onDownloadFailed();
+				listener.onDownloadFailed();	// 下载失败
 			}
 			@Override
 			public void onResponse(Call call, Response response) throws IOException {
@@ -122,6 +123,8 @@ public class OkHttpUtils {
 						if (fos != null)
 							fos.close();
 					} catch (IOException e) {
+						System.out.print("下载文件错误"+e.getMessage());
+						//ToastUtils.show(getInStance().get);
 					}
 				}
 			}
@@ -136,7 +139,8 @@ public class OkHttpUtils {
 	 */
 	private String isExistDir(String saveDir) throws IOException {
 		// 下载位置
-		File downloadFile = new File(Environment.getExternalStorageDirectory(), saveDir);
+//		File downloadFile = new File(Environment.getExternalStorageDirectory(), saveDir);
+		File downloadFile = new File(Environment.getExternalStorageDirectory(),saveDir);
 		if (!downloadFile.mkdirs()) {
 			downloadFile.createNewFile();
 		}
