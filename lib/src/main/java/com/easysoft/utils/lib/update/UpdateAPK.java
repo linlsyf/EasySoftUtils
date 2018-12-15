@@ -42,15 +42,17 @@ public class UpdateAPK {
 	private ProgressBar pb;				//更新时，下载APK时进度条
 	private TextView tv;
 	String downloadApkUrl="";
+	String downloadFileName="";
 	static int  pustIconId=R.drawable.app_icon_push;
 	/**
 	 * 调试信息的，在这里全局判断显示还是隐藏
 	 */
 	public boolean DEBUG = true;
 	
-	public UpdateAPK(Context context,String downloadApkUrl){
+	public UpdateAPK(Context context,String downloadApkUrl,String downloadFileName){
 		this.context = context;
 		this.downloadApkUrl=downloadApkUrl;
+		this.downloadFileName=downloadFileName;
 	}
 	public void setPustIconId(int id){
 		this.pustIconId=pustIconId;
@@ -141,7 +143,7 @@ public class UpdateAPK {
 		new Thread() {
 			public void run() 
 			{
-				loadFile(downloadApkUrl);
+				loadFile(downloadApkUrl,downloadFileName);
 				
 			}
 		}.start();
@@ -210,8 +212,8 @@ public class UpdateAPK {
 		return file;
 	}
 	
-	public void loadFile(String url) {
-		OkHttpUtils.getInStance().download(url, getDownLoadFile().getAbsolutePath(), new OkHttpUtils.OnDownloadListener() {
+	public void loadFile(String url,String fileName) {
+		OkHttpUtils.getInStance().download(url,fileName, getDownLoadFile().getAbsolutePath(), new OkHttpUtils.OnDownloadListener() {
 			@Override
 			public void onDownloadSuccess() {
 				sendMsg(2,0);

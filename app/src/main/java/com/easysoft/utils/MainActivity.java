@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
         ImageUtils.getInStance(this).load(url,   myImageView);
 //        String urlApk="http://10.0.0.96:8090/easy/api/v1/file/downApk";
         String urlApk="http://18.222.51.213:8080/easy/api/v1/file/downApk";
-        OkHttpUtils.getInStance().download(urlApk,"downapk.apk", Environment.getExternalStorageDirectory(), new OkHttpUtils.OnDownloadListener() {
+        OkHttpUtils.getInStance().download(urlApk,"downapk.apk", Environment.getExternalStorageDirectory().getAbsolutePath(), new OkHttpUtils.OnDownloadListener() {
             @Override
             public void onDownloadSuccess() {
 
