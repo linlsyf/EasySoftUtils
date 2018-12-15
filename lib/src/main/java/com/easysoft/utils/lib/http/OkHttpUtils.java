@@ -138,9 +138,7 @@ public class OkHttpUtils {
 	 * 判断下载目录是否存在
 	 */
 	private String isExistDir(String saveDir) throws IOException {
-		// 下载位置
-//		File downloadFile = new File(Environment.getExternalStorageDirectory(), saveDir);
-		File downloadFile = new File(Environment.getExternalStorageDirectory(),saveDir);
+		File downloadFile = new File(saveDir);	// 下载位置
 		if (!downloadFile.mkdirs()) {
 			downloadFile.createNewFile();
 		}

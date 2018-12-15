@@ -38,10 +38,6 @@ public class ImageUtils {
 	
 	public void load(final String url, final ImageView myImageView){
 
-
-//		ThreadPoolUtils.execute(new Runnable() {
-//			@Override
-//			public void run() {
 				Glide.with(mContext)
 						.load(url)
 						.dontAnimate()
@@ -59,9 +55,6 @@ public class ImageUtils {
 							}
 						})
 						.into(myImageView);
-//			}
-//		});
-
 
 	}
 	public void loadPath(final String path, final ImageView myImageView){
