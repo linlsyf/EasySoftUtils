@@ -81,7 +81,7 @@ public class OkHttpUtils {
 	 * @param saveDir 储存下载文件的SDCard目录
 	 * @param listener 下载监听
 	 */
-	public void download(final String url, final String saveDir, final OnDownloadListener listener) {
+	public void download(final String url,String fileName, final String saveDir, final OnDownloadListener listener) {
 		Request request = new Request.Builder().addHeader("Accept-Encoding", "identity")
 				.url(url).build();
 
@@ -100,7 +100,7 @@ public class OkHttpUtils {
 				try {
 					is = response.body().byteStream();
 					long total = response.body().contentLength();
-					File file = new File(savePath, getNameFromUrl(url));
+					File file = new File(savePath,fileName);
 					fos = new FileOutputStream(file);
 					long sum = 0;
 					while ((len = is.read(buf)) != -1) {
