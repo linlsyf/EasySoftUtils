@@ -8,10 +8,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.FileProvider;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -20,9 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.easysoft.utils.lib.BuildConfig;
 import com.easysoft.utils.lib.R;
-import com.easysoft.utils.lib.http.OkHttpUtils;
+import com.easysoft.utils.lib.http.EasyHttpUtils;
 
 import org.json.JSONObject;
 
@@ -43,7 +40,7 @@ public class UpdateAPK {
 	private TextView tv;
 	String downloadApkUrl="";
 	String downloadFileName="";
-	static int  pustIconId=R.drawable.app_icon_push;
+	static int  pustIconId=R.drawable.empty_photo;
 	/**
 	 * 调试信息的，在这里全局判断显示还是隐藏
 	 */
@@ -59,18 +56,18 @@ public class UpdateAPK {
 	}
 	public void Updatecheck() {
 		// Toast.makeText(context, "有可用网络！", 3000).show();
-		UpdateUtil.loading_process = 0;
-		new Thread() {
-			public void run() {
-				if (UpdateUtil.isConnect(context)) {
-					
-					//发送意图，通知更新.只有当前版本的BUG修改，才允许互联网在线更新apk
-					Message msg = BroadcastHandler.obtainMessage();
-					BroadcastHandler.sendMessage(msg);
-
-				}
-			}
-		}.start();
+//		UpdateUtil.loading_process = 0;
+//		new Thread() {
+//			public void run() {
+//				if (UpdateUtil.isConnect(context)) {
+//
+//					//发送意图，通知更新.只有当前版本的BUG修改，才允许互联网在线更新apk
+//					Message msg = BroadcastHandler.obtainMessage();
+//					BroadcastHandler.sendMessage(msg);
+//
+//				}
+//			}
+//		}.start();
 	}
 	
 	/**
@@ -213,7 +210,7 @@ public class UpdateAPK {
 	}
 	
 	public void loadFile(String url,String fileName) {
-		OkHttpUtils.getInStance().download(url,fileName, getDownLoadFile().getAbsolutePath(), new OkHttpUtils.OnDownloadListener() {
+		EasyHttpUtils.getInStance().download(url,fileName, getDownLoadFile().getAbsolutePath(), new EasyHttpUtils.OnDownloadListener() {
 			@Override
 			public void onDownloadSuccess() {
 				sendMsg(2,0);

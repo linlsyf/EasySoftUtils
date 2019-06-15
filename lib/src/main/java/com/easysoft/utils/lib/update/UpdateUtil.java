@@ -2,12 +2,11 @@ package com.easysoft.utils.lib.update;
 
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Environment;
 
 
-import com.easysoft.utils.lib.http.OkHttpUtils;
+import com.easysoft.utils.lib.http.EasyHttpCallback;
+import com.easysoft.utils.lib.http.EasyHttpUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
@@ -27,51 +25,51 @@ public class UpdateUtil {
 	public static int loading_process;
 	private static String reuslt;
 
-	public static JSONObject getJsonObject(String Url) {
-		JSONObject obj = null;
-		try {
-			String josoString=getContent(Url);
-			System.out.println("josoString返回："+josoString);
-//			String josoString = "[{'appname':'newVersion','apkname':'newVersion.apk','verName':1.0.1,'verCode':2}]";
-			JSONArray array = new JSONArray(josoString);
-			if (array.length() > 0) {
-				obj = array.getJSONObject(0);
-			}
-		} catch (Exception e) {
-			System.out.println("异常--->下载,转化JSON");
-			return null;
-		}
-		return obj;
-	}
+//	public static JSONObject getJsonObject(String Url) {
+//		JSONObject obj = null;
+//		try {
+//			String josoString=getContent(Url);
+//			System.out.println("josoString返回："+josoString);
+////			String josoString = "[{'appname':'newVersion','apkname':'newVersion.apk','verName':1.0.1,'verCode':2}]";
+//			JSONArray array = new JSONArray(josoString);
+//			if (array.length() > 0) {
+//				obj = array.getJSONObject(0);
+//			}
+//		} catch (Exception e) {
+//			System.out.println("异常--->下载,转化JSON");
+//			return null;
+//		}
+//		return obj;
+//	}
 	
 	/**
 	 * 获取json文件内容
 	 */
-	public static String getContent(String url) throws Exception {
-		StringBuffer buffer = new StringBuffer();
-//		// 建立HTTP Post联机
-//		HttpPost httpRequest = new HttpPost(url);
-		
-		// 建立HTTP Get联机
-
-		  reuslt="";
-		OkHttpUtils.getInStance().post(url, new Callback() {
-			@Override
-			public void onFailure(Call call, IOException e) {
-				reuslt= call.toString();
-			}
-
-			@Override
-			public void onResponse(Call call, Response response) throws IOException {
-
-						// entity.getContent()取得返回的字符串
-
-				reuslt= call.toString();
-			}
-		});
-
-		return reuslt;
-	}
+//	public static String getContent(String url) throws Exception {
+//		StringBuffer buffer = new StringBuffer();
+////		// 建立HTTP Post联机
+////		HttpPost httpRequest = new HttpPost(url);
+//
+//		// 建立HTTP Get联机
+//
+//		  reuslt="";
+//		EasyHttpUtils.getInStance().post(url, new EasyHttpCallback() {
+//			@Override
+//			public void onFailure(Call call, IOException e) {
+//				reuslt= call.toString();
+//			}
+//
+//			@Override
+//			public void onResponse(Call call, Response response) throws IOException {
+//
+//						// entity.getContent()取得返回的字符串
+//
+//				reuslt= call.toString();
+//			}
+//		});
+//
+//		return reuslt;
+//	}
 //	/**
 //	 * 获取json文件内容
 //	 */
@@ -113,18 +111,18 @@ public class UpdateUtil {
 //		return buffer.toString();
 //	}
 
-	public static boolean isConnect(Context context) {
-		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (connectivity != null) {
-			NetworkInfo info = connectivity.getActiveNetworkInfo();
-			if (info != null && info.isConnected()) {
-				if (info.getState() == NetworkInfo.State.CONNECTED) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+//	public static boolean isConnect(Context context) {
+//		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//		if (connectivity != null) {
+//			NetworkInfo info = connectivity.getActiveNetworkInfo();
+//			if (info != null && info.isConnected()) {
+//				if (info.getState() == NetworkInfo.State.CONNECTED) {
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
 	
 	public static int getVerCode(Context _context, String _package) {
 		int verCode = -1;

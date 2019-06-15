@@ -1,9 +1,5 @@
 package com.easysoft.utils.lib.http;
 
-import android.os.Environment;
-
-import com.easysoft.utils.lib.system.ToastUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,23 +14,23 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class OkHttpUtils {
+public class EasyHttpUtils {
 	
 	public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	public static  OkHttpClient client ;
 
 
-	static OkHttpUtils  utils;
-	 public static OkHttpUtils getInStance(){
+	static EasyHttpUtils utils;
+	 public static EasyHttpUtils getInStance(){
 		 if(utils==null){
-			 utils=new    OkHttpUtils();
+			 utils=new EasyHttpUtils();
 			 client = new OkHttpClient();
 		 }
 		 
 		 return  utils;
 	 }
 	
-	public void post(String url,   Callback callBack)  {
+	public void post(String url,   EasyHttpCallback callBack)  {
 
 
 		String json="";
@@ -54,7 +50,7 @@ public class OkHttpUtils {
 			e.printStackTrace();
 		}
 	}
-	public void uploadFile(String url, String filepath, String fileName,  Callback callBack)  {
+	public void uploadFile(String url, String filepath, String fileName,  EasyHttpCallback callBack)  {
 		 File file = new File(filepath);
 	        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
 	        RequestBody requestBody = new MultipartBody.Builder()
