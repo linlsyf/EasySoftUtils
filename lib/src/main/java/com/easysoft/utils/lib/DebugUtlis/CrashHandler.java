@@ -36,7 +36,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		
 //		logUtils.log2file(""+ex.getCause().getMessage());
 
-		CrashInfo2File.saveCrashInfo2File(ex);
+		com.easysoft.utils.lib.DebugUtlis.CrashInfo2File.saveCrashInfo2File(ex);
 		System.out.print(ex.getMessage());
 
 		// 这里我们可以根据thread name来进行区别对待，同时，我们还可以把异常信息写入文件，以供后来分析。

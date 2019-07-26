@@ -16,7 +16,6 @@ import android.widget.ImageView;
 
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.easysoft.utils.lib.R;
@@ -40,20 +39,7 @@ public class ImageUtils {
 
 				Glide.with(mContext)
 						.load(url)
-						.dontAnimate()
-						.placeholder(R.drawable.empty_photo)//图片加载出来前，显示的图片
-						.listener(new RequestListener<String, GlideDrawable>() {
-							@Override
-							public boolean onException(Exception e, String s, Target<GlideDrawable> target, boolean b) {
-
-								return false;
-							}
-
-							@Override
-							public boolean onResourceReady(GlideDrawable glideDrawable, String s, Target<GlideDrawable> target, boolean b, boolean b1) {
-								return false;
-							}
-						})
+						.apply(ImageRequestOptions.getInstance())
 						.into(myImageView);
 
 	}
@@ -62,15 +48,13 @@ public class ImageUtils {
 
 
 						.load(new File(path))
-						.dontAnimate()
-						.placeholder(R.drawable.empty_photo)//图片加载出来前，显示的图片
+						.apply(ImageRequestOptions.getInstance())
 						.into(myImageView);
 	}
 	public void loadResourceId(int id,ImageView myImageView){
 		Glide.with(mContext)
 		.load(id)
-				.dontAnimate()
-				.placeholder(R.drawable.empty_photo)//图片加载出来前，显示的图片
+				.apply(ImageRequestOptions.getInstance())
 		.into(myImageView);
 		
 	}
@@ -81,72 +65,10 @@ public class ImageUtils {
 
 		Glide.with(mContext)
 				.load(bytes)
-				.dontAnimate()
-				.placeholder(R.drawable.empty_photo)//图片加载出来前，显示的图片
+				.apply(ImageRequestOptions.getInstance())
 				.into(imageView);
 	}
 
-	public static class BitmapUtil {
-
-
-	        public static Bitmap zoomBitmap(Bitmap bitmap, float scale) {
-	            int width = bitmap.getWidth();// 鑾峰彇鍘熷浘鐨勫
-	            int height = bitmap.getHeight();// 鑾峰彇鍘熷浘鐨勯珮
-	            Matrix matrix = new Matrix();// 鍒涘缓Matrix鐭╅樀瀵硅薄
-	            matrix.setScale(scale, scale);// 璁剧疆瀹介珮鐨勭缉鏀炬瘮
-	            return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-	        }
-
-	        public static Drawable bitmapToDrawable(Context context, Bitmap bitmap) {
-	            return new BitmapDrawable(context.getResources(), bitmap);
-	        }
-
-	        public static Bitmap getBitmapById(Context context, int id) {
-	            Drawable drawable = context.getResources().getDrawable(id);
-	            return DrawableUtil.drawableToBitmap(drawable);
-	        }
-
-	        public static Bitmap buildRoundBitmap(Bitmap bitmap, float round) {
-	            int width = bitmap.getWidth();
-	            int height = bitmap.getHeight();
-	            RectF rectF = new RectF(0, 0, width, height);
-
-	            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-	            paint.setColor(Color.GREEN);
-
-	            Bitmap roundBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-	            Canvas canvas = new Canvas(roundBitmap);
-	            canvas.drawBitmap(bitmap, 0, 0, paint);
-	            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-	            canvas.drawRoundRect(rectF, round, round, paint);
-
-	            return roundBitmap;
-	        }
-	    }
-
-	    public static class DrawableUtil {
-
-	        public static Bitmap drawableToBitmap(Drawable drawable) {
-	            int width = drawable.getIntrinsicWidth();
-	            int height = drawable.getIntrinsicHeight();
-	            return buildBitmap(drawable, width, height);
-	        }
-
-	        public static Bitmap drawableToBitmap(Drawable drawable, float scale) {
-	            int width = (int) (drawable.getIntrinsicWidth() * scale);
-	            int height = (int) (drawable.getIntrinsicHeight() * scale);
-	            return buildBitmap(drawable, width, height);
-	        }
-
-	        private static Bitmap buildBitmap(Drawable drawable, int width, int height) {
-	            Bitmap bitmap = Bitmap.createBitmap(width, height, drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-	            Canvas canvas = new Canvas(bitmap);
-	            drawable.setBounds(0, 0, width, height);
-	            drawable.draw(canvas);
-	            return bitmap;
-	        }
-
-	    }
 
 	
 

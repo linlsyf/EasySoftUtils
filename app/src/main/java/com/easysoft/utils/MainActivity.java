@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.easysoft.utils.lib.http.CallBackResult;
 import com.easysoft.utils.lib.http.EasyHttpCallback;
 import com.easysoft.utils.lib.http.EasyHttpUtils;
 import com.easysoft.utils.lib.http.IEasyResponse;
+import com.easysoft.utils.lib.imge.ImageUtils;
 
 
 public class MainActivity extends Activity {
@@ -24,20 +26,20 @@ public class MainActivity extends Activity {
              @Override
              public void onClick(View view) {
 
-                 String url="https://jirenguapi.applinzi.com/fm/getSong.php?channel=public_yuzhong_yueyu";
-                 EasyHttpUtils.getInStance().post(url,new EasyHttpCallback(new IEasyResponse() {
-                     @Override
-                     public void onFailure(CallBackResult serviceCallBack) {
-
-                     }
-
-                     @Override
-                     public void onResponse(CallBackResult serviceCallBack) {
-
-                         int  count=0;
-
-                     }
-                 }));
+//                 String url="https://jirenguapi.applinzi.com/fm/getSong.php?channel=public_yuzhong_yueyu";
+//                 EasyHttpUtils.getInStance().post(url,new EasyHttpCallback(new IEasyResponse() {
+//                     @Override
+//                     public void onFailure(CallBackResult serviceCallBack) {
+//
+//                     }
+//
+//                     @Override
+//                     public void onResponse(CallBackResult serviceCallBack) {
+//
+//                         int  count=0;
+//
+//                     }
+//                 }));
 //
 //                 Intent  intent=new Intent(MainActivity.this,FragmentDyActivity.class);
 //                 MainActivity.this.startActivity(intent);
@@ -52,14 +54,14 @@ public class MainActivity extends Activity {
 
 
 
-//        ImageView myImageView=(ImageView)findViewById(R.id.imgHead);
-//
-//        myImageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        ImageView myImageView=(ImageView)findViewById(R.id.imgHead);
+
+
+                String url="http://qukufile2.qianqian.com/data2/pic/6ed6d59d11fb742adc3bee224f0583ad/590359391/590359391.jpg@s_2,w_300,h_300";
+
+                ImageUtils.getInStance(MainActivity.this).load(url,myImageView);
+
+
 
 
 //        String url="http://p1.qzone.la/upload/20150102/a3zs6l69.jpg";

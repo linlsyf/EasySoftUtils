@@ -29,10 +29,14 @@ public class EasyHttpUtils {
 		 
 		 return  utils;
 	 }
+
+	public void post(String url ,IEasyResponse iEasyResponse )  {
+		EasyHttpCallback callBack=new EasyHttpCallback( iEasyResponse);
+	 		post(url,callBack );
+
+	}
 	
 	public void post(String url,   EasyHttpCallback callBack)  {
-
-
 		String json="";
 		RequestBody body = RequestBody.create(JSON, json);
 	   

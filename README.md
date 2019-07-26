@@ -1,2 +1,2 @@
 
-重现编译  gradlew assembleRelease
+重现编译  gradlew assembleDebug

@@ -14,7 +14,7 @@ public   class EasyHttpCallback implements Callback {
 	CallBackResult serviceCallBack=new CallBackResult();
 
 	IEasyResponse  iResponse;
-	boolean outside=false;
+	boolean outside=true;
 
 
 	public EasyHttpCallback setOutside(boolean outside) {

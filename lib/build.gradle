@@ -2,13 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.linlsyf'
 android {
-    compileSdkVersion 23
-
-
+    compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion 13
-        targetSdkVersion 26
+        minSdkVersion 22
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
@@ -32,9 +30,5 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
-    implementation 'com.android.support:appcompat-v7:23.2.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
 }
