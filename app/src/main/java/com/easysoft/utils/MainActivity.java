@@ -26,20 +26,23 @@ public class MainActivity extends Activity {
              @Override
              public void onClick(View view) {
 
+                 String url="http://49.233.163.215:8080/api/v1/favour/search";
+//                 String url="https://curly-cherry-1f65.jwdxhs.workers.dev/-----https://avmask.com/cn/released/page/31";
+//                 String url="http://49.233.163.215:8080/easy/api/v1/favour/list";
 //                 String url="https://jirenguapi.applinzi.com/fm/getSong.php?channel=public_yuzhong_yueyu";
-//                 EasyHttpUtils.getInStance().post(url,new EasyHttpCallback(new IEasyResponse() {
-//                     @Override
-//                     public void onFailure(CallBackResult serviceCallBack) {
-//
-//                     }
-//
-//                     @Override
-//                     public void onResponse(CallBackResult serviceCallBack) {
-//
-//                         int  count=0;
-//
-//                     }
-//                 }));
+                 EasyHttpUtils.getInStance(MainActivity.this).post(url,new IEasyResponse() {
+                     @Override
+                     public void onFailure(CallBackResult serviceCallBack) {
+                         int  count=0;
+                     }
+
+                     @Override
+                     public void onResponse(CallBackResult serviceCallBack) {
+
+                         int  count=0;
+
+                     }
+                 });
 //
 //                 Intent  intent=new Intent(MainActivity.this,FragmentDyActivity.class);
 //                 MainActivity.this.startActivity(intent);
@@ -54,12 +57,13 @@ public class MainActivity extends Activity {
 
 
 
-        ImageView myImageView=(ImageView)findViewById(R.id.imgHead);
-
-
-                String url="http://qukufile2.qianqian.com/data2/pic/6ed6d59d11fb742adc3bee224f0583ad/590359391/590359391.jpg@s_2,w_300,h_300";
-
-                ImageUtils.getInStance(MainActivity.this).load(url,myImageView);
+//        ImageView myImageView=(ImageView)findViewById(R.id.imgHead);
+//
+//
+//                String url="http://49.233.163.215:8080/easy/api/v1/favour/list";
+////                String url="http://qukufile2.qianqian.com/data2/pic/6ed6d59d11fb742adc3bee224f0583ad/590359391/590359391.jpg@s_2,w_300,h_300";
+//
+//                ImageUtils.getInStance(MainActivity.this).load(url,myImageView);
 
 
 

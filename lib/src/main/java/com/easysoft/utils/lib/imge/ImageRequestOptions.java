@@ -1,10 +1,7 @@
 package com.easysoft.utils.lib.imge;
-
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.easysoft.utils.lib.R;
-
-
 
 public class ImageRequestOptions extends RequestOptions {
 
@@ -21,5 +18,4 @@ public class ImageRequestOptions extends RequestOptions {
         }
         return imageRequestOptions;
     }
-
 }

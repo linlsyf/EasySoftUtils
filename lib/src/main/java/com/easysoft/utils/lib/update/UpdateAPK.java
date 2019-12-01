@@ -210,7 +210,7 @@ public class UpdateAPK {
 	}
 	
 	public void loadFile(String url,String fileName) {
-		EasyHttpUtils.getInStance().download(url,fileName, getDownLoadFile().getAbsolutePath(), new EasyHttpUtils.OnDownloadListener() {
+		EasyHttpUtils.getInStance(context).download(url,fileName, getDownLoadFile().getAbsolutePath(), new EasyHttpUtils.OnDownloadListener() {
 			@Override
 			public void onDownloadSuccess() {
 				sendMsg(2,0);

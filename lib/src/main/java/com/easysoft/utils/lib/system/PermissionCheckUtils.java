@@ -1,4 +1,4 @@
-package com.utils;
+package com.easysoft.utils.lib.system;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,15 +10,9 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-/**
- * Created by Chant on 2018/7/8.
- */
+
 
 public class PermissionCheckUtils {
-
-
-
-
 
     /**
      * 打开开发者模式界面

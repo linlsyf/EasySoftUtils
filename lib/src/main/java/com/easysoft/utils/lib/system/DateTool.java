@@ -1,5 +1,7 @@
 package com.easysoft.utils.lib.system;
 
+import android.text.format.Time;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -98,15 +100,22 @@ public class DateTool {
         GregorianCalendar ca = new GregorianCalendar();   
         ca.setTime(date);   
         return ca.get(Calendar.DAY_OF_WEEK);   
-    }   
-       
-    /**  
-     * �õ�ĳ����ĳ���ڵ�ָ�����ڼ�.  
-     * @param year  
-     * @param week  
-     * @param day Ϊ1��7֮������:1-sun-->7-sta  
-     * @return  
-     */  
+    }
+
+    public static String getYesDayString(){
+        Date d=new Date(System.currentTimeMillis()-1000*60*60*24);
+        SimpleDateFormat sp=new SimpleDateFormat("yyyy-MM-dd");
+        String yesday=sp.format(d);//获取昨天日期
+        return  yesday;
+
+    }
+    public static String getToDayString(){
+        Time localTime = new Time("Asia/Hong_Kong");
+        localTime.setToNow();
+        String date = localTime.format("%Y-%m-%d");
+        return  date;
+
+    }
     public static Date getDayInThisWeek(int year,int week,int day){   
         Calendar cal=Calendar.getInstance();   
         cal.set(Calendar.YEAR, year);   

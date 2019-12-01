@@ -1,11 +1,6 @@
 package com.easysoft.utils.lib.http;
-
-
-
 import okhttp3.Call;
 import okhttp3.Response;
-
-
 public class CallBackResult {
 	boolean isSucess=false;
 	Call call;
@@ -31,7 +26,6 @@ public class CallBackResult {
 	public void setResponse(Response response) {
 		this.response = response;
 	}
-	
 	public ResponseMsg getResponseMsg() {
 		return responseMsg;
 	}
@@ -44,7 +38,6 @@ public class CallBackResult {
 	public void setExcept(Exception except) {
 		this.except = except;
 	}
-	
-	
+
 	
 }

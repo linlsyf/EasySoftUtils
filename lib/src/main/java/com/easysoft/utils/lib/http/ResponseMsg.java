@@ -5,6 +5,7 @@ public class ResponseMsg {
     private  String  msg="";
     private  int  code=200;
     private  Object  data="";
+    private  String  ticket="";
 
     public boolean isSuccess() {
         return success;
@@ -38,5 +39,11 @@ public class ResponseMsg {
         this.data = data;
     }
 
+    public String getTicket() {
+        return ticket;
+    }
 
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
 }

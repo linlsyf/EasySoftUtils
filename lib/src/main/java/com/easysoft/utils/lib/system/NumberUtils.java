@@ -1,4 +1,4 @@
-package com.utils;
+package com.easysoft.utils.lib.system;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;

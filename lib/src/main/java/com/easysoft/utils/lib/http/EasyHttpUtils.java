@@ -1,5 +1,9 @@
 package com.easysoft.utils.lib.http;
 
+import android.content.Context;
+
+import com.easysoft.utils.lib.system.ToastUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,20 +22,27 @@ public class EasyHttpUtils {
 	
 	public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	public static  OkHttpClient client ;
-
+	public static   Context mContext;
 
 	static EasyHttpUtils utils;
-	 public static EasyHttpUtils getInStance(){
+	 public static EasyHttpUtils getInStance(Context context){
+		 mContext=context;
+
 		 if(utils==null){
 			 utils=new EasyHttpUtils();
 			 client = new OkHttpClient();
 		 }
-		 
 		 return  utils;
 	 }
+	public void post(String url ,boolean outParser,IEasyResponse iEasyResponse ) {
+		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
+		  callBack.setOutside(outParser);
+		post(url,callBack );
 
+
+	}
 	public void post(String url ,IEasyResponse iEasyResponse )  {
-		EasyHttpCallback callBack=new EasyHttpCallback( iEasyResponse);
+		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
 	 		post(url,callBack );
 
 	}
@@ -39,19 +50,21 @@ public class EasyHttpUtils {
 	public void post(String url,   EasyHttpCallback callBack)  {
 		String json="";
 		RequestBody body = RequestBody.create(JSON, json);
-	   
+		try {
 	    Request request = new Request.Builder()
 	      .url(url)
 	      .post(body)
 	      .build();
-		try {
+
 			 Call call = client.newCall(request);
 			 call.enqueue(callBack);
 		
 		
 		} catch (Exception e) {
+
+			ToastUtils.show(mContext,e.getMessage());
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 	public void uploadFile(String url, String filepath, String fileName,  EasyHttpCallback callBack)  {
