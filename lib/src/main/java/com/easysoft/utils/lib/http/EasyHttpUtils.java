@@ -119,7 +119,8 @@ public class EasyHttpUtils {
 					while ((len = is.read(buf)) != -1) {
 						fos.write(buf, 0, len);
 						sum += len;
-						int progress = (int) (sum * 1.0f / total * 100);
+						int progress = (int) (sum * 1.0f / total) * 100;
+//						int progress = (int) (sum * 1.0f / total * 100);
 						listener.onDownloading(progress);// 下载中
 					}
 					fos.flush();

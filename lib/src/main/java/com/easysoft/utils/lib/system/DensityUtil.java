@@ -37,7 +37,10 @@ public class DensityUtil {
     /** 
      * 根据设备的分辨率从 dp 的单位 转成为 px(像素) 
      */  
-    public static float getdensity(Context context) {  
+    public static float getdensity(Context context) {
+        if (null==context){
+            return 0;
+        }
     	final float scale = context.getResources().getDisplayMetrics().density;  
     	return scale;  
     }  
@@ -46,19 +49,23 @@ public class DensityUtil {
     /** 
      * 根据设备的分辨率从 px(像素) 的单位 转成为 dp 
      */  
-    public static int px2dip(Context context, float pxValue) {  
+    public static int px2dip(Context context, float pxValue) {
+        if (null==context){
+            return 0;
+        }
         final float scale = context.getResources().getDisplayMetrics().density;  
         return (int) (pxValue / scale + 0.5f);  
     }  
     
     public static int getWindowWidth (Activity activity)
     {
+        if (null==activity){
+            return 0;
+        }
     	WindowManager windowManager = activity.getWindowManager(); 
         Display display = windowManager.getDefaultDisplay(); 
 
-        
-        
-        Point size = new Point();
+                        Point size = new Point();
         display.getSize(size);
         int width = size.x;
 //        int height = size.y;
