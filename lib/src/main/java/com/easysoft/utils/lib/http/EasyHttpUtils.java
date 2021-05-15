@@ -23,7 +23,7 @@ public class EasyHttpUtils {
 	public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	public static  OkHttpClient client ;
 	public static   Context mContext;
-
+    public static  String mResponseCharset="utf-8";
 	static EasyHttpUtils utils;
 	 public static EasyHttpUtils getInStance(Context context){
 		 mContext=context;
@@ -34,8 +34,14 @@ public class EasyHttpUtils {
 		 }
 		 return  utils;
 	 }
+	 public static EasyHttpUtils setCharset(String charset){
+         mResponseCharset=charset;
+        return utils;
+	 }
+
 	public void post(String url ,boolean outParser,IEasyResponse iEasyResponse ) {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
+		callBack.setResponseCharset(mResponseCharset);
 		  callBack.setOutside(outParser);
 		post(url,callBack );
 
@@ -43,13 +49,18 @@ public class EasyHttpUtils {
 	}
 	public void post(String url ,IEasyResponse iEasyResponse )  {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
-	 		post(url,callBack );
+        callBack.setResponseCharset(mResponseCharset);
+
+        post(url,callBack );
 
 	}
 	
 	public void post(String url,   EasyHttpCallback callBack)  {
 		String json="";
-		RequestBody body = RequestBody.create(JSON, json);
+//		MediaType JSONNew = MediaType.parse("application/json; charset=gbk");
+        //		RequestBody body = RequestBody.create(JSONNew, json);
+
+        RequestBody body = RequestBody.create(JSON, json);
 		try {
 	    Request request = new Request.Builder()
 	      .url(url)
@@ -58,8 +69,8 @@ public class EasyHttpUtils {
 
 			 Call call = client.newCall(request);
 			 call.enqueue(callBack);
-		
-		
+
+
 		} catch (Exception e) {
 
 			ToastUtils.show(mContext,e.getMessage());

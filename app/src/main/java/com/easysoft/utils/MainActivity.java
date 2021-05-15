@@ -27,30 +27,31 @@ public class MainActivity extends Activity {
              @Override
              public void onClick(View view) {
 
-                 String url="https://www.linlsyf.cn/api/v1/file/downApk?name=cantonese.apk";
-
-
-                 UpdateAPK  apk=new UpdateAPK(MainActivity.this,url,"test.apk");
-                  apk.Beginning();
+//                 String url="https://www.linlsyf.cn/api/v1/file/downApk?name=cantonese.apk";
+//
+//
+//                 UpdateAPK  apk=new UpdateAPK(MainActivity.this,url,"test.apk");
+//                  apk.Beginning();
 
 
 
 //                 String url="https://curly-cherry-1f65.jwdxhs.workers.dev/-----https://avmask.com/cn/released/page/31";
 //                 String url="http://49.233.163.215:8080/easy/api/v1/favour/list";
 //                 String url="https://jirenguapi.applinzi.com/fm/getSong.php?channel=public_yuzhong_yueyu";
-//                 EasyHttpUtils.getInStance(MainActivity.this).post(url,new IEasyResponse() {
-//                     @Override
-//                     public void onFailure(CallBackResult serviceCallBack) {
-//                         int  count=0;
-//                     }
-//
-//                     @Override
-//                     public void onResponse(CallBackResult serviceCallBack) {
-//
-//                         int  count=0;
-//
-//                     }
-//                 });
+                 String url="http://www.ebc5.com/juji.html";
+                 EasyHttpUtils.getInStance(MainActivity.this).setCharset("GB2312").post(url,new IEasyResponse() {
+                     @Override
+                     public void onFailure(CallBackResult serviceCallBack) {
+                         int  count=0;
+                     }
+
+                     @Override
+                     public void onResponse(CallBackResult serviceCallBack) {
+
+                         int  count=0;
+
+                     }
+                 });
 //
 //                 Intent  intent=new Intent(MainActivity.this,FragmentDyActivity.class);
 //                 MainActivity.this.startActivity(intent);

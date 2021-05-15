@@ -13,6 +13,7 @@ import okhttp3.ResponseBody;
 public   class EasyHttpCallback implements Callback {
 	private final Context mContext;
 	CallBackResult serviceCallBack=new CallBackResult();
+    public   String mResponseCharset="utf-8";
 
 	IEasyResponse  iResponse;
 	boolean outside=true;
@@ -39,7 +40,14 @@ public   class EasyHttpCallback implements Callback {
 		if (response.isSuccessful()) {
 			serviceCallBack.setSucess(true);
 			ResponseBody body = response.body();
-			String msg = body.string();
+            String msg;
+            if (!mResponseCharset.equals("utf-8")){
+               msg = new String(body.bytes(), mResponseCharset); //然后将其转为gb2312
+             }else{
+                msg = body.string();
+
+            }
+
 
 			  try {
 				  if (!outside){
@@ -69,6 +77,12 @@ public   class EasyHttpCallback implements Callback {
 	public void setServiceCallBack(CallBackResult serviceCallBack) {
 		this.serviceCallBack = serviceCallBack;
 	}
-	 
 
+    public String getResponseCharset() {
+        return mResponseCharset;
+    }
+
+    public void setResponseCharset(String mResponseCharset) {
+        this.mResponseCharset = mResponseCharset;
+    }
 }

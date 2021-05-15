@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('F:\\ldh\\签名\\AreaKeyStore.jks')
+            storePassword 'lnsince1991'
+            keyAlias = 'area'
+            keyPassword 'lnsince1991'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.easysoftutils.utils"
@@ -32,5 +40,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile project(path: ':lib')
 }
