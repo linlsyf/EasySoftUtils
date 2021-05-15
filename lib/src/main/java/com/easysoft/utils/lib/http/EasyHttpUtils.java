@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,6 +38,13 @@ public class EasyHttpUtils {
 	 public static EasyHttpUtils setCharset(String charset){
          mResponseCharset=charset;
         return utils;
+	 }
+	 public static EasyHttpUtils init(Map initMap){
+	 	  if (initMap.containsKey("responseCharset")){
+			  mResponseCharset=(String) initMap.get("responseCharset");
+		  }
+
+		 return utils;
 	 }
 
 	public void post(String url ,boolean outParser,IEasyResponse iEasyResponse ) {

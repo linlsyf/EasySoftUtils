@@ -47,8 +47,6 @@ public   class EasyHttpCallback implements Callback {
                 msg = body.string();
 
             }
-
-
 			  try {
 				  if (!outside){
 					  ResponseMsg responseMsg = JSON.parseObject(msg, ResponseMsg.class);
