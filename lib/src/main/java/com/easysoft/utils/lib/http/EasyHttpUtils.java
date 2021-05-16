@@ -24,7 +24,9 @@ public class EasyHttpUtils {
 	public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	public static  OkHttpClient client ;
 	public static   Context mContext;
-    public static  String mResponseCharset="utf-8";
+//    public static  String mResponseCharset="utf-8";
+	public   String CharsetUTF8="utf-8";
+
 	static EasyHttpUtils utils;
 	 public static EasyHttpUtils getInStance(Context context){
 		 mContext=context;
@@ -35,19 +37,26 @@ public class EasyHttpUtils {
 		 }
 		 return  utils;
 	 }
-	 public static EasyHttpUtils setCharset(String charset){
-         mResponseCharset=charset;
-        return utils;
-	 }
-	 public static EasyHttpUtils init(Map initMap){
-	 	  if (initMap.containsKey("responseCharset")){
-			  mResponseCharset=(String) initMap.get("responseCharset");
-		  }
-
-		 return utils;
-	 }
+//	 public static EasyHttpUtils setCharset(String charset){
+//         mResponseCharset=charset;
+//        return utils;
+//	 }
+//	 public static EasyHttpUtils init(Map initMap){
+//	 	  if (initMap.containsKey("responseCharset")){
+//			  mResponseCharset=(String) initMap.get("responseCharset");
+//		  }
+//
+//		 return utils;
+//	 }
 
 	public void post(String url ,boolean outParser,IEasyResponse iEasyResponse ) {
+		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
+		  callBack.setOutside(outParser);
+		post(url,callBack );
+
+
+	}
+	public void post(String url, String mResponseCharset,boolean outParser,IEasyResponse iEasyResponse ) {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
 		callBack.setResponseCharset(mResponseCharset);
 		  callBack.setOutside(outParser);
@@ -55,14 +64,22 @@ public class EasyHttpUtils {
 
 
 	}
+
+
+
 	public void post(String url ,IEasyResponse iEasyResponse )  {
+		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
+        post(url,callBack );
+
+	}
+	public void post(String url ,String mResponseCharset,IEasyResponse iEasyResponse )  {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
         callBack.setResponseCharset(mResponseCharset);
 
         post(url,callBack );
 
 	}
-	
+
 	public void post(String url,   EasyHttpCallback callBack)  {
 		String json="";
 //		MediaType JSONNew = MediaType.parse("application/json; charset=gbk");

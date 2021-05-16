@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 //                 String url="http://49.233.163.215:8080/easy/api/v1/favour/list";
 //                 String url="https://jirenguapi.applinzi.com/fm/getSong.php?channel=public_yuzhong_yueyu";
                  String url="http://www.ebc5.com/juji.html";
-                 EasyHttpUtils.getInStance(MainActivity.this).setCharset("GB2312").post(url,new IEasyResponse() {
+                 EasyHttpUtils.getInStance(MainActivity.this).post(url,"GB2312",new IEasyResponse() {
                      @Override
                      public void onFailure(CallBackResult serviceCallBack) {
                          int  count=0;

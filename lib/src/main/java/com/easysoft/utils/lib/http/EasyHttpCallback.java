@@ -40,13 +40,11 @@ public   class EasyHttpCallback implements Callback {
 		if (response.isSuccessful()) {
 			serviceCallBack.setSucess(true);
 			ResponseBody body = response.body();
-            String msg;
+            String msg = body.string();
             if (!mResponseCharset.equals("utf-8")){
                msg = new String(body.bytes(), mResponseCharset); //然后将其转为gb2312
-             }else{
-                msg = body.string();
-
-            }
+//				mResponseCharset=CharsetUTF8;//转换完后要重置
+             }
 			  try {
 				  if (!outside){
 					  ResponseMsg responseMsg = JSON.parseObject(msg, ResponseMsg.class);
