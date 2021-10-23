@@ -1,18 +1,13 @@
 package com.easysoft.utils;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.easysoft.utils.lib.http.CallBackResult;
-import com.easysoft.utils.lib.http.EasyHttpCallback;
 import com.easysoft.utils.lib.http.EasyHttpUtils;
 import com.easysoft.utils.lib.http.IEasyResponse;
-import com.easysoft.utils.lib.imge.ImageUtils;
-import com.easysoft.utils.lib.update.UpdateAPK;
 
 
 public class MainActivity extends Activity {
@@ -38,8 +33,10 @@ public class MainActivity extends Activity {
 //                 String url="https://curly-cherry-1f65.jwdxhs.workers.dev/-----https://avmask.com/cn/released/page/31";
 //                 String url="http://49.233.163.215:8080/easy/api/v1/favour/list";
 //                 String url="https://jirenguapi.applinzi.com/fm/getSong.php?channel=public_yuzhong_yueyu";
-                 String url="http://www.ebc5.com/juji.html";
-                 EasyHttpUtils.getInStance(MainActivity.this).post(url,"GB2312",new IEasyResponse() {
+                 String url="https://shuyuan.miaogongzi.cc/shuyuan/cef78304dcf74f28985498ace8f57474.json";
+                 EasyHttpUtils.getInStance(MainActivity.this).get(url,new IEasyResponse() {
+//                 String url="http://www.ebc5.com/juji.html";
+//                 EasyHttpUtils.getInStance(MainActivity.this).post(url,"GB2312",new IEasyResponse() {
                      @Override
                      public void onFailure(CallBackResult serviceCallBack) {
                          int  count=0;

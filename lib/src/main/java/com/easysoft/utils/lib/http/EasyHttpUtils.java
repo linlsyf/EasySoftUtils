@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -49,14 +48,14 @@ public class EasyHttpUtils {
 //		 return utils;
 //	 }
 
-	public void post(String url ,boolean outParser,IEasyResponse iEasyResponse ) {
+	public void post(String url , boolean outParser, IEasyResponse iEasyResponse ) {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
 		  callBack.setOutside(outParser);
 		post(url,callBack );
 
 
 	}
-	public void post(String url, String mResponseCharset,boolean outParser,IEasyResponse iEasyResponse ) {
+	public void post(String url, String mResponseCharset, boolean outParser, IEasyResponse iEasyResponse ) {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
 		callBack.setResponseCharset(mResponseCharset);
 		  callBack.setOutside(outParser);
@@ -67,12 +66,14 @@ public class EasyHttpUtils {
 
 
 
-	public void post(String url ,IEasyResponse iEasyResponse )  {
+	public void get(String url ,IEasyResponse iEasyResponse )  {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
-        post(url,callBack );
+		CallConfig config=new CallConfig();
+		config.setType("get");
+		build(url,config,callBack);
 
 	}
-	public void post(String url ,String mResponseCharset,IEasyResponse iEasyResponse )  {
+	public void post(String url , String mResponseCharset, IEasyResponse iEasyResponse )  {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
         callBack.setResponseCharset(mResponseCharset);
 
@@ -80,18 +81,29 @@ public class EasyHttpUtils {
 
 	}
 
-	public void post(String url,   EasyHttpCallback callBack)  {
-		String json="";
+
+
+	public void post(String url, EasyHttpCallback callBack)  {
+		CallConfig config=new CallConfig();
+		config.setType("post");
+		build(url,config,callBack);
+	}
+	public void build(String url, CallConfig callConfig, EasyHttpCallback callBack)  {
+	String json="";
 //		MediaType JSONNew = MediaType.parse("application/json; charset=gbk");
         //		RequestBody body = RequestBody.create(JSONNew, json);
 
         RequestBody body = RequestBody.create(JSON, json);
 		try {
-	    Request request = new Request.Builder()
-	      .url(url)
-	      .post(body)
-	      .build();
 
+			Request.Builder builder= new Request.Builder().url(url);
+			         if ("get"==callConfig.getType()){
+						 builder=builder.get();
+					 }else{
+						 builder=builder.post(body);
+					 }
+	    Request request = builder
+	        .build();
 			 Call call = client.newCall(request);
 			 call.enqueue(callBack);
 
