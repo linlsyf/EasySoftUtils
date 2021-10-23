@@ -73,6 +73,19 @@ public class EasyHttpUtils {
 		build(url,config,callBack);
 
 	}
+	public void post(String url ,CallConfig config,IEasyResponse iEasyResponse )  {
+		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
+
+		build(url,config,callBack);
+
+	}
+	public void post(String url ,IEasyResponse iEasyResponse )  {
+		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
+		CallConfig config=new CallConfig();
+		config.setType("get");
+		build(url,config,callBack);
+
+	}
 	public void post(String url , String mResponseCharset, IEasyResponse iEasyResponse )  {
 		EasyHttpCallback callBack=new EasyHttpCallback(mContext, iEasyResponse);
         callBack.setResponseCharset(mResponseCharset);
